@@ -8,6 +8,7 @@ max_change_optical = 2
 treshold_common = 0.005
 treshold_rare   = 0.001
 
+
 def read_in_test_data(word_count, word_frequency, following_word):
     def exists(word):
         return following_word.get(word)
@@ -36,29 +37,29 @@ def read_in_test_data(word_count, word_frequency, following_word):
         else:
             return fikta(word, confusing_letters) or word
 
-    # Assuming word exists
-    def common(word):
-        return word_frequency[word] > treshold_common/word_count
-
-    # Assuming word exists
-    def rare(word):
-        return word_frequency[word] < treshold_rare/word_count
+    # # Assuming word exists
+    # def common(word):
+    #     return word_frequency[word] > treshold_common/word_count
+    #
+    # # Assuming word exists
+    # def rare(word):
+    #     return word_frequency[word] < treshold_rare/word_count
 
     def count_seen_wordpair(previous_word, current_word):
         return following_word[previous_word].get(current_word) or 0
 
-    def create_guess(prev_word, prev_guess, word):
-        if exists(word) and exists(prev_word) and (common(word) or common(prev_word)) and (rare(word) or rare(prev_word)):
-            guess = word
-        elif exists(prev_word) and count_seen_wordpair(prev_word, word) > 0:
-            guess = word
-        elif prev_guess != prev_word and count_seen_wordpair(prev_guess, word) > 0:
-            guess = word
-        else:
-            # We don't know if prev_word existed.
-            # So let's use prev_guess to be safe.
-            guess = best_guess(prev_guess, word)
-        return guess
+    # def create_guess(prev_word, prev_guess, word):
+    #     if exists(word) and exists(prev_word) and (common(word) or common(prev_word)) and (rare(word) or rare(prev_word)):
+    #         guess = word
+    #     elif exists(prev_word) and count_seen_wordpair(prev_word, word) > 0:
+    #         guess = word
+    #     elif prev_guess != prev_word and count_seen_wordpair(prev_guess, word) > 0:
+    #         guess = word
+    #     else:
+    #         # We don't know if prev_word existed.
+    #         # So let's use prev_guess to be safe.
+    #         guess = best_guess(prev_guess, word)
+    #     return guess
 
 
     def seen(prev_word, word):

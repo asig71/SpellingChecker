@@ -22,22 +22,13 @@ def missing_error(num):
     else:
         return False
 
-def most_common_ocr_error(word):
-    if word == "i":
-        return "í"
-    elif word == "ekkí":
-        return "ekki"
-    elif word == "Reykjavik":
-        return "Reykjavík"
-    return word
-
 def read_files():
     with open("known_errors.csv", newline='', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
         print("Creating dict from known_corrections.csv")
         prev_word = ""
         for row in reader:
-            word = most_common_ocr_error(row['CorrectWord'])
+            word = row['CorrectWord']
             prev_word = create_dicts(prev_word, word)
 
 
@@ -71,11 +62,3 @@ while input() == "":
     importlib.reload(correct)
     correct.read_in_test_data(word_count, word_frequency, following_word)
     print("Press <Enter> to retry correcting, or type q<Enter> to quit..")
-
-
-# import csv
-# with open('eggs.csv', 'w', newline='') as csvfile:
-#     spamwriter = csv.writer(csvfile, delimiter=' ',
-#                             quotechar='|', quoting=csv.QUOTE_MINIMAL)
-#     spamwriter.writerow(['Spam'] * 5 + ['Baked Beans'])
-#     spamwriter.writerow(['Spam', 'Lovely Spam', 'Wonderful Spam'])
