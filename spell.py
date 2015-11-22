@@ -10,17 +10,17 @@ rare_word_treshold = 4
 ordmyndir = []
 
 
-def missing(i):
-    if i in [83, 98, 109, 111]:
-        return True
-    else:
-        return False
-
-def missing_error(num):
-    if num in [83, 86, 87, 88, 98, 104, 109]:
-        return True
-    else:
-        return False
+# def missing(i):
+#     if i in [83, 98, 109, 111]:
+#         return True
+#     else:
+#         return False
+#
+# def missing_error(num):
+#     if num in [83, 86, 87, 88, 98, 104, 109]:
+#         return True
+#     else:
+#         return False
 
 def read_files():
     with open("known_errors.csv", newline='', encoding='utf-8') as csvfile:
